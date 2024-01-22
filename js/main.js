@@ -1,3 +1,3 @@
-import KanbanAPI from "./api/KanbanAPI";
+import KanbanAPI from "./api/KanbanAPI.js";
 
-console.log(KanbanAPI.getItems(1));
+console.log(KanbanAPI.getItem(1));

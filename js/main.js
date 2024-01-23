@@ -1,3 +1,3 @@
 import KanbanAPI from "./api/KanbanAPI.js";
 
-console.log(KanbanAPI.getItem(1));
+KanbanAPI.updateItem(81068);

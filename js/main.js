@@ -1,3 +1,5 @@
-import KanbanAPI from "./api/KanbanAPI.js";
+import Kanban from "./view/Kanban";
 
-KanbanAPI.updateItem(81068);
+new Kanban(
+    document.querySelector(".kanban")
+);

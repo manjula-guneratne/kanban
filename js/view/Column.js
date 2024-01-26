@@ -3,8 +3,8 @@ export default class Column{
         this.elements = {};
         this.elements.root = Column.createRoot();
         this.elements.title = this.elements.root.querySelector(".kanban__column-title");
-        this.elements.title = this.elements.root.querySelector(".kanban__column-items");
-        this.elements.title = this.elements.root.querySelector(".kanban__add-item");
+        this.elements.items = this.elements.root.querySelector(".kanban__column-items");
+        this.elements.addItem = this.elements.root.querySelector(".kanban__add-item");
     }
 
     static createRoot() {

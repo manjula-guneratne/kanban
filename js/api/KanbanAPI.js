@@ -82,8 +82,6 @@ export default class KanbanAPI {
 
 }
 
-
-
 function read(){
     const json = localStorage.getItem("kanban-data");
 

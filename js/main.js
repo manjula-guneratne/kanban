@@ -1,4 +1,4 @@
-import Kanban from "./view/Kanban";
+import Kanban from "./view/Kanban.js";
 
 new Kanban(
     document.querySelector(".kanban")

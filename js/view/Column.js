@@ -1,3 +1,5 @@
+import Kanban from "./Kanban";
+
 export default class Column{
     constructor(id, title){
         this.elements = {};
@@ -8,6 +10,14 @@ export default class Column{
 
         this.elements.root.dataset.id = id;
         this.elements.title.textContent = title;
+
+        this.elements.addItem.addEventListener("click", () => {
+            // TODO: add item
+        });
+
+        KanbanAPI.getItems(id).forEach(item => {
+            console.log(item);
+        });
     }
 
     static createRoot() {

@@ -7,7 +7,7 @@ export default class Kanban {
         Kanban.columns().forEach(column => {
             const columnView = new Column(column.id, column.title);
 
-            this.root.appendchild(columnView.elements.root);
+            this.root.appendChild(columnView.elements.root);
         });
     }
 

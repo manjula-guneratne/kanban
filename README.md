@@ -13,4 +13,4 @@ Here the event that it's listening to is 'dragging'. Also 'getBoundingClientReac
 ## Reference source
 [https://www.youtube.com/watch?v=jfYWwQrtzzY&ab_channel=WebDevSimplified](https://www.youtube.com/watch?v=ijQ6dCughW8&ab_channel=dcode)https://www.youtube.com/watch?v=ijQ6dCughW8&ab_channel=dcode
 
-# Time stopped: 49.30
+# Time stopped: 51.00

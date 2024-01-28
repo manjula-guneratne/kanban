@@ -1,50 +1,63 @@
+import DropZone from "./DropZone.js";
 import KanbanAPI from "../api/KanbanAPI.js";
 
-export default class Item{
-    constructor(id, content){
-        this.elements = {};
-        this.elements.root = Item.createRoot();
-        this.elements.input = this.elements.root.querySelector(".kanban__item-input");
+export default class Item {
+	constructor(id, content) {
+		const bottomDropZone = DropZone.createDropZone();
 
-        this.elements.root.dataset.id = id;
-        this.elements.input.textContent = content;
-        this.content = content;
+		this.elements = {};
+		this.elements.root = Item.createRoot();
+		this.elements.input = this.elements.root.querySelector(".kanban__item-input");
 
-        const onBlur = () => {
-            const newContent = this.elements.input.textContent.trim();
+		this.elements.root.dataset.id = id;
+		this.elements.input.textContent = content;
+		this.content = content;
+		this.elements.root.appendChild(bottomDropZone);
 
-            if(newContent == this.content){
-                return;
-            }
+		const onBlur = () => {
+			const newContent = this.elements.input.textContent.trim();
 
-            this.content = newContent;
+			if (newContent == this.content) {
+				return;
+			}
 
-            KanbanAPI.updateItem(id, {
-                content: this.content
-            });            
-        };
+			this.content = newContent;
 
-        this.elements.input.addEventListener("blur", onBlur);
-        this.elements.root.addEventListener("dbclick", () => {
-            const check = confirm("Are you sure you want to delete this item?");
+			KanbanAPI.updateItem(id, {
+				content: this.content
+			});
+		};
 
-            if(check){
-                KanbanAPI.deleteItem(id);
+		this.elements.input.addEventListener("blur", onBlur);
+		this.elements.root.addEventListener("dblclick", () => {
+			const check = confirm("Are you sure you want to delete this item?");
 
-                this.elements.input.removeEventListener("blur", onBlur);
-            }
-        });
-    }
+			if (check) {
+				KanbanAPI.deleteItem(id);
 
-    static createRoot(){
-        const range = document.createRange();
+				this.elements.input.removeEventListener("blur", onBlur);
+				this.elements.root.parentElement.removeChild(this.elements.root);
+			}
+		});
 
-        range.selectNode(document.body);
+		this.elements.root.addEventListener("dragstart", e => {
+			e.dataTransfer.setData("text/plain", id);
+		});
 
-        return range.createContextualFragment(`
-        <div class="kanban__item" draggable="true">
-            <div class="kanban__item-input" contenteditable></div>
-        </div>
-        `).children[0];
-    }
+		this.elements.input.addEventListener("drop", e => {
+			e.preventDefault();
+		});
+	}
+
+	static createRoot() {
+		const range = document.createRange();
+
+		range.selectNode(document.body);
+
+		return range.createContextualFragment(`
+			<div class="kanban__item" draggable="true">
+				<div class="kanban__item-input" contenteditable></div>
+			</div>
+		`).children[0];
+	}
 }
